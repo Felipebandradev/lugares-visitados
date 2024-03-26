@@ -121,6 +121,15 @@ export default function App() {
               <Text style={estilos.textoBotao}>Localizar no Mapa</Text>
             </Pressable>
           </View>
+          <Text style={estilos.subtitulo}>Funções</Text>
+          <View style={estilos.areaFuncoes}>
+            <Pressable style={estilos.botao}>
+              <Text style={estilos.textoBotao}>Limpar</Text>
+            </Pressable>
+            <Pressable style={estilos.botao}>
+              <Text style={estilos.textoBotao}>Salvar</Text>
+            </Pressable>
+          </View>
         </ScrollView>
       </View>
     </>
@@ -168,9 +177,19 @@ const estilos = StyleSheet.create({
   titulo: {
     textAlign: "center",
     fontSize: 20,
-    color: "#f7f7f7",
-    backgroundColor: "#F1B215",
     padding: 12,
     borderRadius: 5,
+    margin: 10,
+  },
+  subtitulo: {
+    textAlign: "center",
+    fontSize: 18,
+    margin: 10,
+    padding: 12,
+  },
+  areaFuncoes: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 });
