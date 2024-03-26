@@ -6,14 +6,52 @@ import {
   Pressable,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 
 import imagemBase from "./assets/images/imagemBase.jpg";
 import MapView from "react-native-maps";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+/* Importando o imagePicker */
+import * as ImagePicker from "expo-image-picker";
+
+/* Importando o expo-location */
+import * as Location from "expo-location";
 
 export default function App() {
   const [localizacao, setLocalizacao] = useState(null);
+  const [camera, setCamera] = useState(null);
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
+  const [euMapa, setEuMapa] = useState(null);
+
+  useEffect(() => {
+    async function Obterpermissoes() {
+      /* Pedindo permissão da camera */
+      const cameraStatus = await ImagePicker.requestCameraPermissionsAsync();
+      requestPermission(cameraStatus === "granted");
+
+      /* Pedindo permissão  Localização */
+      const { status: posicaoMapa } =
+        await Location.requestForegroundPermissionsAsync();
+
+      if (posicaoMapa !== "granted") {
+        Alert.alert("Ops", "Você não permitiu sua localização");
+        return;
+      }
+
+      /* Armazenando os dados da localização atual */
+      try {
+        let meuLocal = await Location.getCurrentPositionAsync({});
+        setEuMapa(meuLocal);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    Obterpermissoes();
+  }, []);
+
+  const tirarFotoLocal = async () => {};
 
   return (
     <>
@@ -27,7 +65,7 @@ export default function App() {
               style={estilos.fotoLocal}
               source={imagemBase}
             />
-            <Pressable style={estilos.botao}>
+            <Pressable onPress={tirarFotoLocal} style={estilos.botao}>
               <Text style={estilos.textoBotao}>Tirar Foto</Text>
             </Pressable>
           </View>
