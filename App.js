@@ -190,6 +190,6 @@ const estilos = StyleSheet.create({
   areaFuncoes: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
 });
