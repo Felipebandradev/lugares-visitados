@@ -76,6 +76,11 @@ export default function App() {
     });
   };
 
+  const limpar = () => {
+    setLocalizacao(null);
+    setCamera(null);
+  };
+
   return (
     <>
       <StatusBar color="#f7f7f7" />
@@ -123,7 +128,7 @@ export default function App() {
           </View>
           <Text style={estilos.subtitulo}>Funções</Text>
           <View style={estilos.areaFuncoes}>
-            <Pressable style={estilos.botao}>
+            <Pressable onPress={limpar} style={estilos.botao}>
               <Text style={estilos.textoBotao}>Limpar</Text>
             </Pressable>
             <Pressable style={estilos.botao}>
