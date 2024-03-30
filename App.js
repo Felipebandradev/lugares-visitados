@@ -15,6 +15,7 @@ import mapaBase from "./assets/images/mapaBase.png";
 import marcadorEstrela from "./assets/images/marcadorEstrela.png";
 import MapView, { Marker } from "react-native-maps";
 import { useEffect, useState } from "react";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 /* Importando o imagePicker */
 import * as ImagePicker from "expo-image-picker";
 
@@ -98,7 +99,10 @@ export default function App() {
               source={camera ? { uri: camera } : imagemBase}
             />
             <Pressable onPress={tirarFotoLocal} style={estilos.botao}>
-              <Text style={estilos.textoBotao}>Tirar Foto</Text>
+              <View style={estilos.botaoIcone}>
+                <Ionicons name="camera" size={18} color="#f7f7f7" />
+                <Text style={estilos.textoBotao}>Tirar Foto</Text>
+              </View>
             </Pressable>
           </View>
 
@@ -123,18 +127,27 @@ export default function App() {
             )}
 
             <Pressable onPress={melocaliza} style={estilos.botao}>
-              <Text style={estilos.textoBotao}>Localizar no Mapa</Text>
+              <View style={estilos.botaoIcone}>
+                <FontAwesome5 name="map-marked-alt" size={18} color="#f7f7f7" />
+                <Text style={estilos.textoBotao}> Localizar </Text>
+              </View>
             </Pressable>
           </View>
-          <Text style={estilos.subtitulo}>Funções</Text>
-          <View style={estilos.areaFuncoes}>
-            <Pressable onPress={limpar} style={estilos.botao}>
-              <Text style={estilos.textoBotao}>Limpar</Text>
-            </Pressable>
-            <Pressable style={estilos.botao}>
-              <Text style={estilos.textoBotao}>Salvar</Text>
-            </Pressable>
-          </View>
+          {(camera || localizacao) && (
+            <>
+              <Text style={estilos.subtitulo}>Funções</Text>
+              <View style={estilos.areaFuncoes}>
+                <Pressable onPress={limpar} style={estilos.botaoExcluir}>
+                  <Text style={estilos.textoBotaoexcluir}>
+                    <Ionicons name="trash-bin" size={16} /> Limpar
+                  </Text>
+                </Pressable>
+                <Pressable style={estilos.botao}>
+                  <Text style={estilos.textoBotao}>Salvar</Text>
+                </Pressable>
+              </View>
+            </>
+          )}
         </ScrollView>
       </View>
     </>
@@ -170,6 +183,12 @@ const estilos = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
   },
+  botaoIcone: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    gap: 5,
+  },
   campoNomeLugar: {
     borderColor: "#F1B215",
     padding: 12,
@@ -196,5 +215,16 @@ const estilos = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  botaoExcluir: {
+    borderColor: "red",
+    borderWidth: 3,
+    padding: 12,
+    borderRadius: 5,
+  },
+  textoBotaoexcluir: {
+    color: "red",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
