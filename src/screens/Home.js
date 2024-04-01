@@ -27,8 +27,11 @@ export default function Home({ navigation }) {
           >
             <Text style={estilos.textoBotao}>Salvar Lugar</Text>
           </Pressable>
-          <Pressable style={estilos.botao}>
-            <Text style={estilos.textoBotao}>Lugares que Visitei</Text>
+          <Pressable
+            onPress={() => navigation.navigate("Album")}
+            style={estilos.botao}
+          >
+            <Text style={estilos.textoBotao}> Álbum de Locais Visitados </Text>
           </Pressable>
         </View>
       </View>
@@ -44,8 +47,8 @@ const estilos = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 350,
+    height: 350,
     alignSelf: "center",
   },
   botao: {

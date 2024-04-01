@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import Home from "./src/screens/Home";
 import SalvarPasseio from "./src/screens/SalvarPasseio";
+import Album from "./src/screens/Album";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -33,7 +34,16 @@ export default function App() {
             options={{ headerShown: false }}
           />
 
-          <Stack.Screen name="SalvarPasseio" component={SalvarPasseio} />
+          <Stack.Screen
+            name="SalvarPasseio"
+            component={SalvarPasseio}
+            options={{ title: "Lugar Visitado" }}
+          />
+          <Stack.Screen
+            name="Album"
+            component={Album}
+            options={{ title: "Álbum de Locais Visitados" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
