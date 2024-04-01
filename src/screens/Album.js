@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Album() {
   const [figurinhas, setFigurinhas] = useState([]);
@@ -40,25 +41,46 @@ export default function Album() {
       <StatusBar color="#f7f7f7" />
       <View style={estilos.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={estilos.titulo}> Álbum </Text>
+          <Text style={estilos.titulo}>
+            Álbum
+            <MaterialIcons name="photo-album" size={18} color="#f7f7f7f" />
+          </Text>
+          <Text style={estilos.subtitulo}>
+            Figurinhas{" "}
+            <MaterialCommunityIcons name="sticker" size={16} color="black" />:{" "}
+            {figurinhas.length}
+          </Text>
 
-          {figurinhas.map((figurinha) => {
-            return (
-              <View key={figurinha.nome} style={estilos.cardLocal}>
-                <View>
-                  <Image
-                    style={estilos.foto}
-                    source={{ uri: `${figurinha.camera}` }}
-                  />
-                </View>
+          {figurinhas && (
+            <View style={estilos.areaCards}>
+              {figurinhas.map((figurinha) => {
+                return (
+                  <>
+                    <View key={figurinha.nome} style={estilos.cardLocal}>
+                      <View>
+                        <MaterialIcons
+                          name="photo-album"
+                          size={18}
+                          color="#f7f7f7"
+                        />
+                        <Image
+                          style={estilos.foto}
+                          source={{ uri: `${figurinha.camera}` }}
+                        />
+                      </View>
 
-                <View style={estilos.areaTexto}>
-                  <Text style={estilos.tituloFoto}>{figurinha.nome}</Text>
-                  <Text style={estilos.nomeLocal}>{figurinha.nomeLocal}</Text>
-                </View>
-              </View>
-            );
-          })}
+                      <View style={estilos.areaTexto}>
+                        <Text style={estilos.tituloFoto}>{figurinha.nome}</Text>
+                        <Text style={estilos.nomeLocal}>
+                          {figurinha.nomeLocal}
+                        </Text>
+                      </View>
+                    </View>
+                  </>
+                );
+              })}
+            </View>
+          )}
         </ScrollView>
       </View>
     </>
@@ -87,11 +109,35 @@ const estilos = StyleSheet.create({
     borderRadius: 5,
   },
   cardLocal: {
-    flex: 0.4,
-    flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#ffd795",
+    padding: 12,
+    marginVertical: 12,
+    borderRadius: 5,
+  },
+  areaTexto: {
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  areaCards: {
+    flexDirection: "row",
     justifyContent: "space-between",
-    margin: 16,
-    gap: 5,
+    alignItems: "center",
+    gap: 2.5,
+    flexWrap: "wrap",
+    margin: 12,
+  },
+  tituloFoto: {
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  nomeLocal: {
+    fontSize: 12,
+    fontWeight: "300",
+  },
+  subtitulo: {
+    textAlign: "justify",
+    margin: 10,
+    fontSize: 16,
   },
 });
