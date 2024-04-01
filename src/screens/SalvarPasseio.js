@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
   TextInput,
+  Vibration,
 } from "react-native";
 
 import imagemBase from "../../assets/images/imagemBase.png";
@@ -131,6 +132,16 @@ export default function SalvarPasseio() {
       const albumDeLocais = await AsyncStorage.getItem("@albumvisitei");
 
       const listaDeLocais = albumDeLocais ? JSON.parse(albumDeLocais) : [];
+      const jaTemLocal = listaDeLocais.some((listaDeLocais) => {
+        return listaDeLocais.nome === nome;
+        // True or False
+      });
+
+      if (jaTemLocal) {
+        Alert.alert("Ops!", "Você já salvou um local com esse nome");
+        Vibration.vibrate(300);
+        return;
+      }
 
       listaDeLocais.push({ camera, localizacao, nome, nomeLocal });
 
@@ -143,7 +154,7 @@ export default function SalvarPasseio() {
     } catch (error) {
       console.log("Deu ruim: " + error);
 
-      Alert.alert("Erro", "erro aou salvar o local");
+      Alert.alert("Erro", "erro ao salvar o local");
     }
   };
 

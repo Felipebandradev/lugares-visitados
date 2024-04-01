@@ -38,22 +38,25 @@ export default function Album() {
   return (
     <>
       <StatusBar color="#f7f7f7" />
-      <View>
-        <ScrollView>
-          <Text> Álbum </Text>
+      <View style={estilos.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={estilos.titulo}> Álbum </Text>
 
           {figurinhas.map((figurinha) => {
             return (
-              <Pressable>
+              <View key={figurinha.nome} style={estilos.cardLocal}>
                 <View>
-                  <Text>{figurinha.nome}</Text>
                   <Image
                     style={estilos.foto}
                     source={{ uri: `${figurinha.camera}` }}
                   />
-                  <Text>{figurinha.nomeLocal}</Text>
                 </View>
-              </Pressable>
+
+                <View style={estilos.areaTexto}>
+                  <Text style={estilos.tituloFoto}>{figurinha.nome}</Text>
+                  <Text style={estilos.nomeLocal}>{figurinha.nomeLocal}</Text>
+                </View>
+              </View>
             );
           })}
         </ScrollView>
@@ -63,10 +66,32 @@ export default function Album() {
 }
 
 const estilos = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+  },
+  titulo: {
+    textAlign: "center",
+    fontSize: 20,
+    padding: 12,
+    borderRadius: 5,
+    margin: 10,
+    backgroundColor: "#F1B215",
+    color: "#f7f7f7",
+  },
   foto: {
     width: 150,
     height: 200,
     marginVertical: 18,
     borderRadius: 5,
+  },
+  cardLocal: {
+    flex: 0.4,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: 16,
+    gap: 5,
   },
 });
