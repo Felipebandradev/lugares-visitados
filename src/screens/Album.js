@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function Album() {
+export default function Album({ navigation }) {
   const [figurinhas, setFigurinhas] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Album() {
     carregarFigurinhas();
   }, []);
 
-  console.log(figurinhas);
+  // console.log(figurinhas);
 
   return (
     <>
@@ -42,8 +42,8 @@ export default function Album() {
       <View style={estilos.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={estilos.titulo}>
-            Álbum
-            <MaterialIcons name="photo-album" size={18} color="#f7f7f7f" />
+            Visitei
+            <MaterialIcons name="photo-album" size={18} color="#f7f7f7" />
           </Text>
           <Text style={estilos.subtitulo}>
             Figurinhas{" "}
@@ -55,8 +55,13 @@ export default function Album() {
             <View style={estilos.areaCards}>
               {figurinhas.map((figurinha) => {
                 return (
-                  <>
-                    <View key={figurinha.nome} style={estilos.cardLocal}>
+                  <Pressable
+                    key={figurinha.nome}
+                    onPress={() =>
+                      navigation.navigate("Detalhes", { figurinha })
+                    }
+                  >
+                    <View style={estilos.cardLocal}>
                       <View>
                         <MaterialIcons
                           name="photo-album"
@@ -76,7 +81,7 @@ export default function Album() {
                         </Text>
                       </View>
                     </View>
-                  </>
+                  </Pressable>
                 );
               })}
             </View>

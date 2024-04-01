@@ -151,6 +151,7 @@ export default function SalvarPasseio() {
       );
 
       Alert.alert(`Local Visitado`, `local ${nome} salvo com sucesso no Álbum`);
+      Vibration.vibrate(300);
     } catch (error) {
       console.log("Deu ruim: " + error);
 

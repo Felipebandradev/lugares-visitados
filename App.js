@@ -1,19 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  Pressable,
-  Image,
-  ScrollView,
-  Alert,
-  TextInput,
-} from "react-native";
 import Home from "./src/screens/Home";
 import SalvarPasseio from "./src/screens/SalvarPasseio";
 import Album from "./src/screens/Album";
+import Detalhes from "./src/screens/Detalhes";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -42,7 +32,12 @@ export default function App() {
           <Stack.Screen
             name="Album"
             component={Album}
-            options={{ title: "Álbum de Locais Visitados" }}
+            options={{ title: "Álbum" }}
+          />
+          <Stack.Screen
+            name="Detalhes"
+            component={Detalhes}
+            options={{ title: "Lugar Visitado" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
