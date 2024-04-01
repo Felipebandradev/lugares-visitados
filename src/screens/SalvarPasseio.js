@@ -135,7 +135,6 @@ export default function SalvarPasseio() {
           </View>
           {(camera || localizacao) && (
             <>
-              <Text style={estilos.subtitulo}>Funções</Text>
               <View style={estilos.areaFuncoes}>
                 <Pressable onPress={limpar} style={estilos.botaoExcluir}>
                   <Text style={estilos.textoBotaoexcluir}>

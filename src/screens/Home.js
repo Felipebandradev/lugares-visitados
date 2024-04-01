@@ -16,13 +16,19 @@ export default function Home({ navigation }) {
     <>
       <StatusBar color="#f7f7f7" />
       <View style={estilos.container}>
-        <Image style={estilos.logo} source={logo} />
         <View>
-          <Pressable onPress={() => navigation.navigate("SalvarPasseio")}>
-            <Text>Salvar Lugar</Text>
+          <Image style={estilos.logo} source={logo} />
+          <Text style={estilos.titulo}>VISITEI</Text>
+        </View>
+        <View>
+          <Pressable
+            style={estilos.botao}
+            onPress={() => navigation.navigate("SalvarPasseio")}
+          >
+            <Text style={estilos.textoBotao}>Salvar Lugar</Text>
           </Pressable>
-          <Pressable>
-            <Text>Lugares que Visitei</Text>
+          <Pressable style={estilos.botao}>
+            <Text style={estilos.textoBotao}>Lugares que Visitei</Text>
           </Pressable>
         </View>
       </View>
@@ -40,5 +46,24 @@ const estilos = StyleSheet.create({
   logo: {
     width: 150,
     height: 150,
+    alignSelf: "center",
+  },
+  botao: {
+    backgroundColor: "#F1B215",
+    padding: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+    marginBottom: 24,
+  },
+  textoBotao: {
+    color: "#f7f7f7",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  titulo: {
+    textAlign: "center",
+    fontSize: 24,
+    color: "#F1B214",
   },
 });
