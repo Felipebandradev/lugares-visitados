@@ -114,6 +114,8 @@ const estilos = StyleSheet.create({
     borderRadius: 5,
   },
   cardLocal: {
+    maxWidth: "100%",
+    width: 180,
     alignItems: "center",
     backgroundColor: "#ffd795",
     padding: 12,
