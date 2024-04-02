@@ -36,11 +36,12 @@ export default function Detalhes({ route }) {
           contentContainerStyle={estilos.subcontainer}
         >
           <View style={estilos.fotoca}>
+            <Text style={estilos.titulo}>{figurinha.nome}</Text>
             <Image
               style={estilos.fotoLocal}
               source={{ uri: `${figurinha.camera}` }}
             />
-            <Text style={estilos.titulo}>{figurinha.nome}</Text>
+
             <Pressable onPress={compartilharFoto} style={estilos.botao}>
               <View style={estilos.botaoIcone}>
                 <Text style={estilos.textoBotao}>Compartilhar Foto</Text>
@@ -50,6 +51,7 @@ export default function Detalhes({ route }) {
           </View>
 
           <View style={estilos.verLocal}>
+            <Text style={estilos.titulo}>{figurinha.nomeLocal}</Text>
             <MapView
               style={estilos.fotoLocal}
               mapType="hybrid"
@@ -64,8 +66,6 @@ export default function Detalhes({ route }) {
                 />
               </Marker>
             </MapView>
-
-            <Text style={estilos.titulo}>{figurinha.nomeLocal}</Text>
           </View>
         </ScrollView>
       </View>
