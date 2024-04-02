@@ -30,6 +30,7 @@ export default function SalvarPasseio() {
   const [localizacao, setLocalizacao] = useState(null);
   const [camera, setCamera] = useState(null);
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
+  const [statusLoc, requestPermissionLoc] = Location.useForegroundPermissions();
   const [euMapa, setEuMapa] = useState(null);
   const [nome, setNome] = useState("");
   const [nomeLocal, setNomeLocal] = useState("");
@@ -48,7 +49,7 @@ export default function SalvarPasseio() {
         Alert.alert("Ops", "Você não permitiu sua localização");
         return;
       }
-
+      requestPermissionLoc(posicaoMapa === "granted");
       /* Armazenando os dados da localização atual */
       try {
         let meuLocal = await Location.getCurrentPositionAsync({});
