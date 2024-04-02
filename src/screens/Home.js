@@ -5,9 +5,6 @@ import {
   StatusBar,
   Pressable,
   Image,
-  ScrollView,
-  Alert,
-  TextInput,
 } from "react-native";
 import logo from "../../assets/icon.png";
 
